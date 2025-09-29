@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09a48b5daf835d49b8c59563a48e800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 10
+  perfilJugador: {fileID: 11400000, guid: b1736881f15bf5440882faaaee1be619, type: 2}
 --- !u!114 &410517418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e483c07a6020c484c84ff1aa28d01bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuerzaSalto: 15
+  perfilJugador: {fileID: 11400000, guid: b1736881f15bf5440882faaaee1be619, type: 2}
 --- !u!114 &410517419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,10 +593,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946da9cc30447fc449d7cf0f42b1e789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 3
   textoVidas: {fileID: 0}
   gameOverPanel: {fileID: 818643870}
-  winPanel: {fileID: 1706642420}
   OnLivesChanged:
     m_PersistentCalls:
       m_Calls:
@@ -613,6 +611,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   hud: {fileID: 1100992094}
+  perfilJugador: {fileID: 11400000, guid: b1736881f15bf5440882faaaee1be619, type: 2}
 --- !u!1 &418481680
 GameObject:
   m_ObjectHideFlags: 0
@@ -11378,7 +11377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyName: Key
-  nextSceneName: 
+  youWinPanel: {fileID: 1706642420}
 --- !u!1 &1532260969
 GameObject:
   m_ObjectHideFlags: 0
@@ -11432,7 +11431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1706642421
 RectTransform:
   m_ObjectHideFlags: 0

@@ -8,57 +8,65 @@ using UnityEngine.Events;
 public class Jugador : MonoBehaviour
 {
     [Header("Configuración")]
-    [SerializeField] private int vida = 3;  
+    
     [SerializeField] private TextMeshProUGUI textoVidas; // Referencia al UI TextMeshPro
     [SerializeField] private GameObject gameOverPanel;   // Panel de Game Over (UI)
     [SerializeField] private UnityEvent<int> OnLivesChanged;
     [SerializeField] private HUDController hud;
-
-
+    [SerializeField] private PerfilJugador perfilJugador;
+ 
     private void Start()
     {
+
+        if (perfilJugador != null)
+        {
+            perfilJugador.vidas = Mathf.Max(perfilJugador.vidas, 1); // Evitar 0 al inicio
+        }
+
         ActualizarUI();
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false); // Aseguramos que empiece oculto
 
-        OnLivesChanged.Invoke(vida);
+        OnLivesChanged.Invoke(perfilJugador.vidas);
     }
 
     public void ModificarVida(int puntos)
     {
-        vida += puntos;
+        if (perfilJugador == null) return;
 
-        // Evitamos que baje de 0
-        if (vida < 0) vida = 0;
+        perfilJugador.vidas += puntos;
+
+        if (perfilJugador.vidas < 0)
+            perfilJugador.vidas = 0;
 
         ActualizarUI();
 
-        Debug.Log(EstasVivo());
-
         if (hud != null)
-            hud.ActualizarVidasHUD(vida);
+            hud.ActualizarVidasHUD(perfilJugador.vidas);
 
-        OnLivesChanged.Invoke(vida);
-        // Si la vida llega a 0, mostramos Game Over
+        OnLivesChanged.Invoke(perfilJugador.vidas);
+
         if (!EstasVivo())
         {
             GameOver();
         }
-
     }
 
     private bool EstasVivo()
     {
-        return vida > 0;
+        return perfilJugador != null && perfilJugador.vidas > 0;
     }
 
-    private void ActualizarUI() // Actualizamos las vidas
+    private void ActualizarUI()
     {
-        if (textoVidas != null)
+        if (textoVidas != null && perfilJugador != null)
         {
-            textoVidas.text = "" + vida;
+            textoVidas.text = perfilJugador.vidas.ToString();
         }
     }
+
+
+  
     private void GameOver()
     {
         Debug.Log("GAME OVER");

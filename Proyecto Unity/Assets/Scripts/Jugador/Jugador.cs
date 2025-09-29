@@ -84,5 +84,6 @@ public class Jugador : MonoBehaviour
     {
         Time.timeScale = 1f; // Reanudamos el tiempo antes de recargar
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        perfilJugador.ResetValores();
     }
 }

@@ -10,7 +10,11 @@ public class PerfilJugador : ScriptableObject
     [Header ("Configuraciones de Atributos")]
     [SerializeField] private int vida = 3;
     public int vidas { get => vida; set => vida = value; }
+    public void ResetValores()
+    {
+        vidas = 3;
 
+    }
     [Header("Configuraciones de Movimiento")]
     [SerializeField] private float fuerzaSalto = 5f;
     public float Fuerzasalto {  get => fuerzaSalto; set => fuerzaSalto = value;}

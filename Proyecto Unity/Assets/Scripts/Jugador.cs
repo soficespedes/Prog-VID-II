@@ -8,12 +8,13 @@ using UnityEngine.Events;
 public class Jugador : MonoBehaviour
 {
     [Header("Configuración")]
-    [SerializeField] private int vida = 5;  
+    [SerializeField] private int vida = 3;  
     [SerializeField] private TextMeshProUGUI textoVidas; // Referencia al UI TextMeshPro
     [SerializeField] private GameObject gameOverPanel;   // Panel de Game Over (UI)
     [SerializeField] private GameObject winPanel; // Panel de Win (UI)
-    [SerializeField] 
-    private UnityEvent<int> OnLivesChanged;
+    [SerializeField] private UnityEvent<int> OnLivesChanged;
+    [SerializeField] private HUDController hud;
+
 
     private void Start()
     {
@@ -37,6 +38,9 @@ public class Jugador : MonoBehaviour
         ActualizarUI();
 
         Debug.Log(EstasVivo());
+
+        if (hud != null)
+            hud.ActualizarVidasHUD(vida);
 
         OnLivesChanged.Invoke(vida);
         // Si la vida llega a 0, mostramos Game Over

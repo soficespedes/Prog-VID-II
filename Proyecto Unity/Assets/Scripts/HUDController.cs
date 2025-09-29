@@ -13,19 +13,21 @@ public class HUDController : MonoBehaviour
     public void ActualizarVidasHUD(int vida)
     {
         Debug.Log("ESTAS ACTUALIZANDO VIDAS");
-        if (EstaVacioContenedor())
+
+        int diferencia = CantidadIconosVidas() - vida;
+
+        if (diferencia > 0)
         {
-            CargarContenedor(vida);
-            return;
+            for (int i = 0; i < diferencia; i++)
+                EliminarUltimoIcono();
         }
-        if (CantidadIconosVidas() > vida)
+        else if (diferencia < 0)
         {
-            EliminarUltimoIcono();
+            for (int i = 0; i < -diferencia; i++)
+                CrearIcono();
         }
-        else
-        {
-            CrearIcono();
-        }
+
+
     }
 
     private bool EstaVacioContenedor()
@@ -43,9 +45,9 @@ public class HUDController : MonoBehaviour
         Transform contenedor = contenedorIconosVida.transform;
         GameObject.Destroy(contenedor.GetChild(contenedor.childCount - 1).gameObject);
     }
-    private void CargarContenedor(int cantidadIconos)
+    private void CargarContenedor(int vida)
     {
-        for (int i = 0; i < cantidadIconos; i++)
+        for (int i = 0; i < vida; i++)
         {
             CrearIcono();
         }
@@ -53,6 +55,6 @@ public class HUDController : MonoBehaviour
 
     private void CrearIcono()
     {
-        Instantiate(iconoVida, contenedorIconosVida.tranSform);
+        Instantiate(iconoVida, contenedorIconosVida.transform);
     }
 }

@@ -11,7 +11,6 @@ public class Jugador : MonoBehaviour
     [SerializeField] private int vida = 3;  
     [SerializeField] private TextMeshProUGUI textoVidas; // Referencia al UI TextMeshPro
     [SerializeField] private GameObject gameOverPanel;   // Panel de Game Over (UI)
-    [SerializeField] private GameObject winPanel; // Panel de Win (UI)
     [SerializeField] private UnityEvent<int> OnLivesChanged;
     [SerializeField] private HUDController hud;
 
@@ -21,9 +20,6 @@ public class Jugador : MonoBehaviour
         ActualizarUI();
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false); // Aseguramos que empiece oculto
-
-        if (winPanel != null)
-            winPanel.SetActive(false); // Aseguramos que empiece oculto
 
         OnLivesChanged.Invoke(vida);
     }
@@ -56,15 +52,6 @@ public class Jugador : MonoBehaviour
         return vida > 0;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        if (collision.CompareTag("Meta")) // Si llegamos a la meta, mostramos el mensaje de Win
-        {
-            YouWin();
-        }
-    }
-
     private void ActualizarUI() // Actualizamos las vidas
     {
         if (textoVidas != null)
@@ -82,16 +69,6 @@ public class Jugador : MonoBehaviour
         }
 
         
-        Time.timeScale = 0f;
-    }
-
-    private void YouWin()
-    {
-        Debug.Log("YOU WIN!");
-
-        if (winPanel != null) // Mostramos el panel de Win
-            winPanel.SetActive(true);
-
         Time.timeScale = 0f;
     }
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -53,6 +53,6 @@ public class HUDController : MonoBehaviour
 
     private void CrearIcono()
     {
-        Instantiate(iconoVida, contenedorIconosVida.transform);
+        Instantiate(iconoVida, contenedorIconosVida.tranSform);
     }
 }

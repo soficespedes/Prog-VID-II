@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.Events;
 
 public class Jugador : MonoBehaviour
 {
     [Header("Configuración")]
-    [SerializeField] private float vida = 5;  
+    [SerializeField] private int vida = 5;  
     [SerializeField] private TextMeshProUGUI textoVidas; // Referencia al UI TextMeshPro
     [SerializeField] private GameObject gameOverPanel;   // Panel de Game Over (UI)
     [SerializeField] private GameObject winPanel; // Panel de Win (UI)
+    [SerializeField] 
+    private UnityEvent<int> OnLivesChanged;
 
     private void Start()
     {
@@ -21,9 +23,11 @@ public class Jugador : MonoBehaviour
 
         if (winPanel != null)
             winPanel.SetActive(false); // Aseguramos que empiece oculto
+
+        OnLivesChanged.Invoke(vida);
     }
 
-    public void ModificarVida(float puntos)
+    public void ModificarVida(int puntos)
     {
         vida += puntos;
 
@@ -34,6 +38,7 @@ public class Jugador : MonoBehaviour
 
         Debug.Log(EstasVivo());
 
+        OnLivesChanged.Invoke(vida);
         // Si la vida llega a 0, mostramos Game Over
         if (!EstasVivo())
         {

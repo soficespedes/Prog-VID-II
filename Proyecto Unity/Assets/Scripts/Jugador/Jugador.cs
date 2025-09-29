@@ -3,66 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.Events;
 
 public class Jugador : MonoBehaviour
 {
     [Header("Configuración")]
-    [SerializeField] private float vida = 5;  
+    
     [SerializeField] private TextMeshProUGUI textoVidas; // Referencia al UI TextMeshPro
     [SerializeField] private GameObject gameOverPanel;   // Panel de Game Over (UI)
-    [SerializeField] private GameObject winPanel; // Panel de Win (UI)
-
+    [SerializeField] private UnityEvent<int> OnLivesChanged;
+    [SerializeField] private HUDController hud;
+    [SerializeField] private PerfilJugador perfilJugador;
+ 
     private void Start()
     {
+
+        if (perfilJugador != null)
+        {
+            perfilJugador.vidas = Mathf.Max(perfilJugador.vidas, 1); // Evitar 0 al inicio
+        }
+
         ActualizarUI();
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false); // Aseguramos que empiece oculto
 
-        if (winPanel != null)
-            winPanel.SetActive(false); // Aseguramos que empiece oculto
+        OnLivesChanged.Invoke(perfilJugador.vidas);
     }
 
-    public void ModificarVida(float puntos)
+    public void ModificarVida(int puntos)
     {
-        vida += puntos;
+        if (perfilJugador == null) return;
 
-        // Evitamos que baje de 0
-        if (vida < 0) vida = 0;
+        perfilJugador.vidas += puntos;
+
+        if (perfilJugador.vidas < 0)
+            perfilJugador.vidas = 0;
 
         ActualizarUI();
 
-        Debug.Log(EstasVivo());
+        if (hud != null)
+            hud.ActualizarVidasHUD(perfilJugador.vidas);
 
-        // Si la vida llega a 0, mostramos Game Over
+        OnLivesChanged.Invoke(perfilJugador.vidas);
+
         if (!EstasVivo())
         {
             GameOver();
         }
-
     }
 
     private bool EstasVivo()
     {
-        return vida > 0;
+        return perfilJugador != null && perfilJugador.vidas > 0;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void ActualizarUI()
     {
-
-        if (collision.CompareTag("Meta")) // Si llegamos a la meta, mostramos el mensaje de Win
+        if (textoVidas != null && perfilJugador != null)
         {
-            YouWin();
+            textoVidas.text = perfilJugador.vidas.ToString();
         }
     }
 
-    private void ActualizarUI() // Actualizamos las vidas
-    {
-        if (textoVidas != null)
-        {
-            textoVidas.text = "" + vida;
-        }
-    }
+
+  
     private void GameOver()
     {
         Debug.Log("GAME OVER");
@@ -76,19 +80,10 @@ public class Jugador : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    private void YouWin()
-    {
-        Debug.Log("YOU WIN!");
-
-        if (winPanel != null) // Mostramos el panel de Win
-            winPanel.SetActive(true);
-
-        Time.timeScale = 0f;
-    }
-
     public void Restart()
     {
         Time.timeScale = 1f; // Reanudamos el tiempo antes de recargar
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        perfilJugador.ResetValores();
     }
 }

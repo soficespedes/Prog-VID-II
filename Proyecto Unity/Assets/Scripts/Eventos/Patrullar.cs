@@ -25,7 +25,7 @@ public class Patrullar : MonoBehaviour
         if (flipSprite && spriteRenderer == null)
             spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Guardar posición inicial y calcular puntos
+        // Guarda posición inicial y calcula puntos
         startPos = transform.position;
         puntoA = new Vector2(startPos.x - distancia, startPos.y);
         puntoB = new Vector2(startPos.x + distancia, startPos.y);

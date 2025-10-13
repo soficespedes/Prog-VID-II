@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Perfil Normal
   m_EditorClassIdentifier: 
   vida: 3
-  fuerzaSalto: 12
-  velocidad: 7
+  fuerzaSalto: 15
+  velocidad: 10

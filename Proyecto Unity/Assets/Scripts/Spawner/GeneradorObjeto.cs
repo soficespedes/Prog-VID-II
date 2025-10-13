@@ -10,21 +10,21 @@ public class GeneradorObjeto : MonoBehaviour
     private float tiempoEspera = 1f;
 
     [Header("Ajustes de posición del spawn")]
-    [SerializeField] private float offsetY = -0.8f; // 🔹 más abajo del tubo
+    [SerializeField] private float offsetY = -0.8f; // más abajo del tubo
 
     void GenerarObjeto()
     {
-        // 🔹 Calculamos la posición del spawn más abajo
+        // Calculamos la posición del spawn más abajo
         Vector3 posicionSpawn = new Vector3(
             transform.position.x,
             transform.position.y + offsetY,
             transform.position.z
         );
 
-        // 🔹 Instanciamos el enemigo
+        // Instanciamos el enemigo
         GameObject nuevo = Instantiate(objetoPrefab, posicionSpawn, Quaternion.identity);
 
-        // 🔹 Aseguramos que la gravedad esté activada
+        // Aseguramos que la gravedad esté activada
         Rigidbody2D rb = nuevo.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.gravityScale = Mathf.Max(rb.gravityScale, 1f); // evita que esté en 0

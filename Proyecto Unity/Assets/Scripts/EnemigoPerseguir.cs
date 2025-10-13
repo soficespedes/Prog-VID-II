@@ -18,6 +18,14 @@ public class EnemigoPerseguir : MonoBehaviour
     private void Awake()
     {
         miRigidbody2D = GetComponent<Rigidbody2D>();
+        if (jugador == null)
+        {
+            GameObject objJugador = GameObject.FindGameObjectWithTag("Player");
+            if (objJugador != null)
+            {
+                jugador = objJugador.transform;
+            }
+        }
     }
 
     private void FixedUpdate()

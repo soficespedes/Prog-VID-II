@@ -17,5 +17,10 @@ public class HerirProyectil : MonoBehaviour
             Debug.Log(" PUNTOS DE DAÑO REALIZADOS AL JUGADOR " + puntos);
             gameObject.SetActive(false);
         }
+        if (collision.gameObject.CompareTag("Pared"))
+        {
+            Debug.Log("El proyectil chocó contra una pared.");
+            gameObject.SetActive(false);
+        }
     }
 }

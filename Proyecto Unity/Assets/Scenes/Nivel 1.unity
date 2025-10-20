@@ -426,11 +426,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 410517416}
   - {fileID: 1308320743}
   - {fileID: 1409414064}
   - {fileID: 622019430}
   - {fileID: 808865155}
-  - {fileID: 410517416}
   - {fileID: 2034015313}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -470,7 +470,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 1
+  m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1.5
   m_Material: {fileID: 0}
@@ -519,7 +519,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.7
 --- !u!212 &410517415
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14358,7 +14358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5262490573235688067, guid: dbc9f88a02dedec419cec6125f542720, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.8958054
+      value: 6.96
       objectReference: {fileID: 0}
     - target: {fileID: 5262490573235688067, guid: dbc9f88a02dedec419cec6125f542720, type: 3}
       propertyPath: m_LocalPosition.y

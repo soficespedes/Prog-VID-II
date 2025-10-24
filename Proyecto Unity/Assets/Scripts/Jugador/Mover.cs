@@ -13,8 +13,6 @@ public class Mover : MonoBehaviour
     private Rigidbody2D miRigidbody2D;
     private Animator miAnimator;
     private SpriteRenderer miSprite;
-    private CircleCollider2D miCollider2D;
-    private int saltarMask;
 
     // Codigo ejecutado cuando el objeto se activa en el nivel
     private void OnEnable()
@@ -22,8 +20,7 @@ public class Mover : MonoBehaviour
         miRigidbody2D = GetComponent<Rigidbody2D>();
         miAnimator = GetComponent<Animator>();
         miSprite = GetComponent<SpriteRenderer>();
-        miCollider2D = GetComponent<CircleCollider2D>();
-        saltarMask = LayerMask.GetMask("Pisos");
+        
     }
 
     // Codigo ejecutado en cada frame del juego (Intervalo variable)
@@ -33,7 +30,6 @@ public class Mover : MonoBehaviour
         
         direccion = new Vector2(moverHorizontal, 0f);
         //Debug.Log("Input: " + moverHorizontal);
-        
 
         int velocidadX = (int)miRigidbody2D.linearVelocity.x;
         miSprite.flipX = velocidadX > 0;

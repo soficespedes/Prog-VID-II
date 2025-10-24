@@ -59,7 +59,6 @@ public class Saltar : MonoBehaviour
     {
         if (miAudioSource != null && clip != null)
         {
-            // Usa PlayOneShot para reproducir el clip sin interrumpir otros que puedan estar sonando
             miAudioSource.PlayOneShot(clip);
         }
     }

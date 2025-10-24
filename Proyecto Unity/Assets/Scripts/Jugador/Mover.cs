@@ -32,20 +32,16 @@ public class Mover : MonoBehaviour
         moverHorizontal = Input.GetAxis("Horizontal");
         
         direccion = new Vector2(moverHorizontal, 0f);
-        Debug.Log("Input: " + moverHorizontal);
+        //Debug.Log("Input: " + moverHorizontal);
+        
 
         int velocidadX = (int)miRigidbody2D.linearVelocity.x;
         miSprite.flipX = velocidadX > 0;
         miAnimator.SetInteger("Velocidad", velocidadX);
-        miAnimator.SetBool("EnAire", !EnContactoConPlataforma());
+        
     }
     private void FixedUpdate()
     {
         miRigidbody2D.AddForce(direccion * perfilJugador.Velocidad);
-    }
-
-    private bool EnContactoConPlataforma()
-    {
-        return miCollider2D.IsTouchingLayers(saltarMask);
     }
 }

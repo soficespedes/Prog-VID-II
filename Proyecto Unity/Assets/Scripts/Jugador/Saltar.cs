@@ -7,7 +7,7 @@ public class Saltar : MonoBehaviour
 
     // Variables a configurar desde el editor
     [SerializeField] private PerfilJugador perfilJugador;
-
+    [SerializeField] private Animator miAnimator;
     // Variables de uso interno en el script
     private bool puedoSaltar = true;
     private bool saltando = false;
@@ -24,6 +24,7 @@ public class Saltar : MonoBehaviour
     {
         miRigidbody2D = GetComponent<Rigidbody2D>();
         miAudioSource = GetComponent<AudioSource>();
+        miAnimator = GetComponent<Animator>();
     }
 
     // Codigo ejecutado en cada frame del juego (Intervalo variable)
@@ -33,6 +34,7 @@ public class Saltar : MonoBehaviour
         {
             puedoSaltar = false;
             ReproducirSFX(jumpSFX);
+            miAnimator.SetBool("EnAire", true);
         }
     }
 
@@ -50,7 +52,8 @@ public class Saltar : MonoBehaviour
     {
         puedoSaltar = true;
         saltando = false;
-        
+        miAnimator.SetBool("EnAire", false);
+
     }
     private void ReproducirSFX(AudioClip clip)
     {

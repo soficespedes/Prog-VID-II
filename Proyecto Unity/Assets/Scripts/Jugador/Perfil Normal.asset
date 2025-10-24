@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3093e5a9c1dc21439c8949bb900ec5a, type: 3}
   m_Name: Perfil Normal
   m_EditorClassIdentifier: 
-  vida: 1
-  fuerzaSalto: 15
-  velocidad: 20
+  vida: 3
+  fuerzaSalto: 12
+  velocidad: 15

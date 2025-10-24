@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vida: 3
   fuerzaSalto: 12
-  velocidad: 15
+  velocidad: 12
